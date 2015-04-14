@@ -2,6 +2,7 @@
 usuario = open("usuario.csv",encoding="utf-8")
 usuario.readline()
 linhas = usuario.readline()
+linhas = linhas.strip()
 partes = linhas.split(",")
 
 print(partes)
@@ -16,14 +17,15 @@ elif partes[3]=="F":
     TMB = 447.6 + (9.2 * peso) + (3.1 * altura*100) - (4.3 * idade)
 print(TMB)
 
+str.strip(partes[5].strip())
 def caloria_ideal(a):
-    if a=="minimo\n":
+    if a=="minimo":
         return(1.2*TMB)
     elif a=="baixo":
         return(1.375*TMB)
     elif a=="medio":
         return(1.55*TMB)
-    elif a=="alto\n":
+    elif a=="alto":
         return(1.725*TMB)
     elif a=="muito alto":
         return(1.9*TMB)
@@ -31,10 +33,50 @@ def caloria_ideal(a):
 x=caloria_ideal(partes[5])
 print("numero de calorias ideal: ",x,"por dia")
 
-usuario.readline()
-consumo = usuario.readline()
-cons = consumo.split(",")
+
+consumo = usuario.readlines()
+
+for i in range(len(consumo)):
+    consumo[i] = consumo[i].strip()
+
+for l in range(len(consumo)):
+    consumo[l] = consumo[l].split(",")    
+    
+    
 dic={}
-dic[cons[0]]=[cons[1],cons[2]]
-print(cons)
+consumo.remove(consumo[0])
+print(consumo)
+for i in consumo:
+    lista=[]
+    lista.append(i[1])
+    lista.append(i[2])
+    dia=i[0]
+    if dia not in dic:
+        dic[dia] = []
+    dic[dia].append(lista)
+    
 print(dic)
+   
+
+abrir = open("alimentos.csv")
+alimentos = abrir.readlines()
+
+for i in range(len(alimentos)):
+    alimentos[i] = alimentos[i].strip()
+
+for l in range(len(alimentos)):
+    alimentos[l] = alimentos[l].split(",")
+alimentos.remove(alimentos[0])
+print(alimentos)
+
+
+def divisao():
+    lista=[]   
+    for i in alimentos:
+        g=float(i[1])
+        c=float(i[2])
+        cal_por_g=(c/g)
+        lista.append(cal_por_g)
+    return lista
+x=divisao()    
+print(x)
