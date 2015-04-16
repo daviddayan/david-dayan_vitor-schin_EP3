@@ -91,31 +91,23 @@ for l in alimentos:
         dic_alimentos[alim] = []
     dic_alimentos[alim].append(l[1])
     dic_alimentos[alim].append(l[2])
-print("dic2",dic_alimentos)
+print(dic_alimentos)
 
 
 
+consumo_total = {}
 
 cal_por_grama=[]
-for k in dic2:
-    c=float(dic2[k[1]])
-    g=float(dic2[k[0]])
-    cal_por_g=(c/g)
-    lista3=[]
-    for l in dic:
-        w=float(l[1])
-        cal_do_dia=w*cal_por_g
-        lista3.append(cal_do_dia)
-print(lista3)
-        
-        
-        
-        
-#        dia=i[0]
-#        if dia not in dic:
-#            dic[dia] = []
-#        dic[dia].append(lista)
-#        
+for k in dic_consumo:
+    tdia = 0
+    for lista_dia in dic_consumo[k]:
+        c=float(dic_alimentos[lista_dia[0]][1])
+        g=float(dic_alimentos[lista_dia[0]][0])        
+        tdia += float(lista_dia[1])*(c/g)
+    consumo_total[k] = tdia
+
+print(consumo_total)
+      
 
     
         
@@ -128,10 +120,7 @@ print(lista3)
 
 
 
-#qtde=[]
-#for i in dic:
-#    if i[0] in alimentos:
-#        qtde.append(i[1])
+
         
 
 
