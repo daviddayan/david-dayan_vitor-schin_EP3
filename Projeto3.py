@@ -1,4 +1,10 @@
 # -*- coding: utf-8 -*-
+"""
+Created on Tue Apr 14 11:24:07 2015
+
+@author: vitorkitahara
+"""
+
 usuario = open("usuario.csv",encoding="utf-8")
 usuario.readline()
 linhas = usuario.readline()
@@ -43,9 +49,11 @@ for l in range(len(consumo)):
     consumo[l] = consumo[l].split(",")    
     
     
+
 dic_consumo={}
 consumo.remove(consumo[0])
 #print(consumo)
+
 for i in consumo:
     lista=[]
     lista.append(i[1])
@@ -113,14 +121,6 @@ print(consumo_total)
         
         
         
-        
-        
-        
-    
-
-
-
-
         
 
 
