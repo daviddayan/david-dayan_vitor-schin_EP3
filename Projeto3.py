@@ -11,7 +11,7 @@ linhas = usuario.readline()
 linhas = linhas.strip()
 partes = linhas.split(",")
 
-print(partes)
+#print(partes)
 
 idade=float(partes[1])
 peso=float(partes[2])
@@ -49,17 +49,69 @@ for l in range(len(consumo)):
     consumo[l] = consumo[l].split(",")    
     
     
-dic={}
+
+dic_consumo={}
 consumo.remove(consumo[0])
-print(consumo)
+#print(consumo)
+
 for i in consumo:
     lista=[]
     lista.append(i[1])
     lista.append(i[2])
     dia=i[0]
-    if dia not in dic:
-        dic[dia] = []
-    dic[dia].append(lista)
+    if dia not in dic_consumo:
+        dic_consumo[dia] = []
+    dic_consumo[dia].append(lista)
     
-print(dic)
+print(dic_consumo)
+   
 
+abrir = open("alimentos.csv")
+alimentos = abrir.readlines()
+
+for i in range(len(alimentos)):
+    alimentos[i] = alimentos[i].strip()
+
+for l in range(len(alimentos)):
+    alimentos[l] = alimentos[l].split(",")
+alimentos.remove(alimentos[0])
+#print(alimentos)
+
+
+#def divisao():
+#    cal_por_grama=[]   
+#    for i in alimentos:
+#        g=float(i[1])
+#        c=float(i[2])
+#        cal_por_g=(c/g)
+#        cal_por_grama.append(cal_por_g)
+#    return cal_por_grama
+#x=divisao()    
+#print(x)
+
+dic_alimentos={}
+for l in alimentos:
+#    lista2=[]
+#    lista2.append(l[1])
+#    lista2.append(l[2])
+    alim=l[0]
+    if alim not in dic_alimentos:
+        dic_alimentos[alim] = []
+    dic_alimentos[alim].append(l[1])
+    dic_alimentos[alim].append(l[2])
+print(dic_alimentos)
+
+
+
+consumo_total = {}
+
+cal_por_grama=[]
+for k in dic_consumo:
+    tdia = 0
+    for lista_dia in dic_consumo[k]:
+        c=float(dic_alimentos[lista_dia[0]][1])
+        g=float(dic_alimentos[lista_dia[0]][0])        
+        tdia += float(lista_dia[1])*(c/g)
+    consumo_total[k] = tdia
+
+print(consumo_total)
