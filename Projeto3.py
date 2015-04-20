@@ -21,7 +21,7 @@ if partes[3]=="M":
     TMB = 88.36 + (13.4 * peso) + (4.8 * altura*100) - (5.7 * idade)
 elif partes[3]=="F":
     TMB = 447.6 + (9.2 * peso) + (3.1 * altura*100) - (4.3 * idade)
-print(TMB)
+#print(TMB)
 
 str.strip(partes[5].strip())
 def caloria_ideal(a):
@@ -37,7 +37,7 @@ def caloria_ideal(a):
         return(1.9*TMB)
 
 x=caloria_ideal(partes[5])
-print("numero de calorias ideal: ",x,"por dia")
+#print("numero de calorias ideal: ",x,"por dia")
 
 
 consumo = usuario.readlines()
@@ -80,15 +80,17 @@ alimentos.remove(alimentos[0])
 
 dic_alimentos={}
 for l in alimentos:
-#    lista2=[]
-#    lista2.append(l[1])
-#    lista2.append(l[2])
+
     alim=l[0]
     if alim not in dic_alimentos:
         dic_alimentos[alim] = []
     dic_alimentos[alim].append(l[1])
     dic_alimentos[alim].append(l[2])
-#print(dic_alimentos)
+    dic_alimentos[alim].append(l[3])
+    dic_alimentos[alim].append(l[4])
+    dic_alimentos[alim].append(l[5])
+    
+print(dic_alimentos)
 
 
 
@@ -103,7 +105,7 @@ for k in dic_consumo:
         tdia += float(lista_dia[1])*(c/g)
     consumo_total[k] = tdia
 
-print(consumo_total)
+#print(consumo_total)
       
 
     
@@ -130,20 +132,14 @@ alimentos.remove(alimentos[0])
 
 
 
-dic_alimentos={}
-for l in alimentos:
-    alim=l[0]
-    if alim not in dic_alimentos:
-        dic_alimentos[alim] = []
-    dic_alimentos[alim].append(l[1])
-    dic_alimentos[alim].append(l[2])
-#print(dic_alimentos)
+
+
 
 
 
 consumo_total = {}
 
-cal_por_grama=[]
+
 for k in dic_consumo:
     tdia = 0
     for lista_dia in dic_consumo[k]:
@@ -194,7 +190,7 @@ for i in consumo_total:
         
     cons2[l_data[j]]=consumo_total[i]
     j+=1
-
+#print(cons2)
 num_dias = []
 
 cal_dia=[]
@@ -209,16 +205,41 @@ for d in ordem_crono:
     num_dias.append( (d - ordem_crono[0]).days )
 print(num_dias)
 
+consumo_prot = {}
 
+for k in dic_consumo:
+    tdiaprot = 0
+    for lista_dia in dic_consumo[k]:
+        p=float(dic_alimentos[lista_dia[0]][2])
+        g=float(dic_alimentos[lista_dia[0]][0])        
+        tdiaprot += float(lista_dia[1])*(p/g)
+    consumo_prot[k] = tdiaprot
+
+print(consumo_prot)
+
+consprot={}
+w=0
+for i in consumo_prot:
+        
+    consprot[l_data[w]]=consumo_prot[i]
+    w+=1
+print(consprot)
+
+prot_dia=[]
+for i in sorted(consprot):
+    prot_dia.append(consprot[i])
+print(prot_dia)
 
 import matplotlib.pyplot as plt
 
 cal_id=[x]*7
-
+plt.plot(num_dias,prot_dia,"b")
 plt.plot(num_dias,cal_id,"g")
 plt.plot(num_dias,cal_dia,"r")
 plt.axis(0,num_dias[6],0,consumo_total)
 plt.show()
+
+
 
 
 
