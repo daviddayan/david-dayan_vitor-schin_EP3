@@ -88,7 +88,7 @@ for l in alimentos:
         dic_alimentos[alim] = []
     dic_alimentos[alim].append(l[1])
     dic_alimentos[alim].append(l[2])
-print(dic_alimentos)
+#print(dic_alimentos)
 
 
 
@@ -137,7 +137,7 @@ for l in alimentos:
         dic_alimentos[alim] = []
     dic_alimentos[alim].append(l[1])
     dic_alimentos[alim].append(l[2])
-print(dic_alimentos)
+#print(dic_alimentos)
 
 
 
@@ -153,3 +153,87 @@ for k in dic_consumo:
     consumo_total[k] = tdia
     
 print(consumo_total)
+
+datas=[]
+for i in consumo_total:
+    d=i.split("/")
+    datas.append(d)
+print(datas)
+
+import datetime
+
+consumo_crono={}
+d1=datetime.datetime(int(datas[0][2]), int(datas[0][1]), int(datas[0][0]))
+d2=datetime.datetime(int(datas[1][2]), int(datas[1][1]), int(datas[1][0]))
+d3=datetime.datetime(int(datas[2][2]), int(datas[2][1]), int(datas[2][0]))
+d4=datetime.datetime(int(datas[3][2]), int(datas[3][1]), int(datas[3][0]))
+d5=datetime.datetime(int(datas[4][2]), int(datas[4][1]), int(datas[4][0]))
+d6=datetime.datetime(int(datas[5][2]), int(datas[5][1]), int(datas[5][0]))
+d7=datetime.datetime(int(datas[6][2]), int(datas[6][1]), int(datas[6][0]))
+
+
+
+
+    
+print(d1)
+print(d2)
+print(d3)
+print(d4)
+print(d5)
+print(d6)
+print(d7)
+
+
+
+l_data=[d1,d2,d3,d4,d5,d6,d7]
+
+
+cons2={}
+j=0
+for i in consumo_total:
+        
+    cons2[l_data[j]]=consumo_total[i]
+    j+=1
+
+num_dias = []
+
+cal_dia=[]
+for i in sorted(cons2):
+    #print(cons2[i])
+    cal_dia.append(cons2[i])
+print(cal_dia)
+
+ordem_crono=sorted(l_data)
+
+for d in ordem_crono:
+    num_dias.append( (d - ordem_crono[0]).days )
+print(num_dias)
+
+
+
+import matplotlib.pyplot as plt
+
+cal_id=[x]*7
+
+plt.plot(num_dias,cal_id,"g")
+plt.plot(num_dias,cal_dia,"r")
+plt.axis(0,num_dias[6],0,consumo_total)
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
