@@ -64,7 +64,7 @@ for i in consumo:
     dic_consumo[dia].append(lista)
 
     
-print(dic_consumo)
+#print(dic_consumo)
    
 
 abrir = open("alimentos.csv")
@@ -115,7 +115,7 @@ for k in dic_consumo:
         
 
     
-print(dic_consumo)
+#print(dic_consumo)
    
 
 abrir = open("alimentos.csv")
@@ -148,13 +148,13 @@ for k in dic_consumo:
         tdia += float(lista_dia[1])*(c/g)
     consumo_total[k] = tdia
     
-print(consumo_total)
+#print(consumo_total)
 
 datas=[]
 for i in consumo_total:
     d=i.split("/")
     datas.append(d)
-print(datas)
+#print(datas)
 
 import datetime
 
@@ -171,13 +171,13 @@ d7=datetime.datetime(int(datas[6][2]), int(datas[6][1]), int(datas[6][0]))
 
 
     
-print(d1)
-print(d2)
-print(d3)
-print(d4)
-print(d5)
-print(d6)
-print(d7)
+#print(d1)
+#print(d2)
+#print(d3)
+#print(d4)
+#print(d5)
+#print(d6)
+#print(d7)
 
 
 
@@ -197,13 +197,13 @@ cal_dia=[]
 for i in sorted(cons2):
     #print(cons2[i])
     cal_dia.append(cons2[i])
-print(cal_dia)
+#print(cal_dia)
 
 ordem_crono=sorted(l_data)
 
 for d in ordem_crono:
     num_dias.append( (d - ordem_crono[0]).days )
-print(num_dias)
+#print(num_dias)
 
 #proteinas
 
@@ -217,7 +217,7 @@ for k in dic_consumo:
         tdiaprot += float(lista_dia[1])*(p/g)
     consumo_prot[k] = tdiaprot
 
-print(consumo_prot)
+#print(consumo_prot)
 
 consprot={}
 w=0
@@ -225,12 +225,12 @@ for i in consumo_prot:
         
     consprot[l_data[w]]=consumo_prot[i]
     w+=1
-print(consprot)
+#print(consprot)
 
 prot_dia=[]
 for i in sorted(consprot):
     prot_dia.append(consprot[i])
-print(prot_dia)
+#print(prot_dia)
 
 #carboidratos
 
@@ -244,7 +244,7 @@ for k in dic_consumo:
         tdiacarb += float(lista_dia[1])*(car/g)
     consumo_carb[k] = tdiacarb
 
-print(consumo_carb)
+#print(consumo_carb)
 
 conscarb={}
 z=0
@@ -252,20 +252,51 @@ for i in consumo_carb:
         
     conscarb[l_data[z]]=consumo_carb[i]
     z+=1
-print(conscarb)
+#print(conscarb)
 
 carb_dia=[]
 for i in sorted(conscarb):
     carb_dia.append(conscarb[i])
-print(carb_dia)
+#print(carb_dia)
+
+#gorduras
+
+consumo_gord = {}
+
+for k in dic_consumo:
+    tdiagord = 0
+    for lista_dia in dic_consumo[k]:
+        gor=float(dic_alimentos[lista_dia[0]][4])
+        g=float(dic_alimentos[lista_dia[0]][0])        
+        tdiagord += float(lista_dia[1])*(gor/g)
+    consumo_gord[k] = tdiagord
+
+#print(consumo_gord)
+
+consgord={}
+ç=0
+for i in consumo_gord:
+        
+    consgord[l_data[ç]]=consumo_gord[i]
+    ç+=1
+#print(consgord)
+
+gord_dia=[]
+for i in sorted(consgord):
+    gord_dia.append(consgord[i])
+#print(gord_dia)
+
+
 
 import matplotlib.pyplot as plt
 
 cal_id=[x]*7
-plt.plot(num_dias,prot_dia,"b")
+plt.plot(num_dias,prot_dia,"purple")
 plt.plot(num_dias,cal_id,"g")
-plt.plot(num_dias,cal_dia,"r")
+plt.plot(num_dias,cal_dia,"b")
+plt.plot(num_dias,cal_dia,"p")
 plt.plot(num_dias,carb_dia,"y")
+plt.plot(num_dias,gord_dia,"r")
 plt.axis(0,num_dias[6],0,consumo_total)
 plt.show()
 
