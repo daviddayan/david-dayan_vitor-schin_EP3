@@ -90,7 +90,7 @@ for l in alimentos:
     dic_alimentos[alim].append(l[4])
     dic_alimentos[alim].append(l[5])
     
-print(dic_alimentos)
+#print(dic_alimentos)
 
 
 
@@ -135,7 +135,7 @@ alimentos.remove(alimentos[0])
 
 
 
-
+#calorias
 
 consumo_total = {}
 
@@ -205,6 +205,8 @@ for d in ordem_crono:
     num_dias.append( (d - ordem_crono[0]).days )
 print(num_dias)
 
+#proteinas
+
 consumo_prot = {}
 
 for k in dic_consumo:
@@ -230,12 +232,40 @@ for i in sorted(consprot):
     prot_dia.append(consprot[i])
 print(prot_dia)
 
+#carboidratos
+
+consumo_carb = {}
+
+for k in dic_consumo:
+    tdiacarb = 0
+    for lista_dia in dic_consumo[k]:
+        car=float(dic_alimentos[lista_dia[0]][3])
+        g=float(dic_alimentos[lista_dia[0]][0])        
+        tdiacarb += float(lista_dia[1])*(car/g)
+    consumo_carb[k] = tdiacarb
+
+print(consumo_carb)
+
+conscarb={}
+z=0
+for i in consumo_carb:
+        
+    conscarb[l_data[z]]=consumo_carb[i]
+    z+=1
+print(conscarb)
+
+carb_dia=[]
+for i in sorted(conscarb):
+    carb_dia.append(conscarb[i])
+print(carb_dia)
+
 import matplotlib.pyplot as plt
 
 cal_id=[x]*7
 plt.plot(num_dias,prot_dia,"b")
 plt.plot(num_dias,cal_id,"g")
 plt.plot(num_dias,cal_dia,"r")
+plt.plot(num_dias,carb_dia,"y")
 plt.axis(0,num_dias[6],0,consumo_total)
 plt.show()
 
