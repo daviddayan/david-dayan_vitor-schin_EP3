@@ -291,12 +291,28 @@ for i in sorted(consgord):
 import matplotlib.pyplot as plt
 
 cal_id=[x]*7
-plt.plot(num_dias,prot_dia,"purple")
-plt.plot(num_dias,cal_id,"g")
-plt.plot(num_dias,cal_dia,"b")
+
+#plt.plot(num_dias,prot_dia,"purple",label="proteinas")
+#plt.legend(loc="upper right")
+#plt.plot(num_dias,carb_dia,"y",label="carboidratos")
+#plt.legend(loc="upper right")
+#plt.plot(num_dias,gord_dia,"r",label="gorduras")
+#plt.legend(loc="upper right")
+#plt.axis(0,num_dias[6],0,500)
+#plt.show()
+
+
+plt.plot(num_dias,prot_dia,"purple",label="proteinas")
+plt.legend(loc="upper right")
+plt.plot(num_dias,carb_dia,"y",label="carboidratos")
+plt.legend(loc="upper right")
+plt.plot(num_dias,gord_dia,"r",label="gorduras")
+plt.legend(loc="upper right")
+plt.plot(num_dias,cal_id,"g",label="calorias")
+plt.legend(loc="upper right")
+plt.plot(num_dias,cal_dia,"b",label="calorias ideias")
+plt.legend(loc="upper right")
 plt.plot(num_dias,cal_dia,"p")
-plt.plot(num_dias,carb_dia,"y")
-plt.plot(num_dias,gord_dia,"r")
 plt.axis(0,num_dias[6],0,consumo_total)
 plt.show()
 
