@@ -313,7 +313,7 @@ plt.legend(loc="upper right")
 plt.plot(num_dias,cal_dia,"b",label="calorias ideias")
 plt.legend(loc="upper right")
 plt.plot(num_dias,cal_dia,"p")
-plt.axis(0,num_dias[6],0,consumo_total)
+plt.axis(0,num_dias[6],0,cal_dia)
 plt.show()
 
 
