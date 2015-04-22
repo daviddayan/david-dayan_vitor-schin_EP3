@@ -23,6 +23,11 @@ elif partes[3]=="F":
     TMB = 447.6 + (9.2 * peso) + (3.1 * altura*100) - (4.3 * idade)
 #print(TMB)
 
+'''
+Define a função para calcular a quantidade de caloria ideal a ser
+consumida pelo indivíduo
+'''
+
 str.strip(partes[5].strip())
 def caloria_ideal(a):
     if a=="minimo":
@@ -49,6 +54,9 @@ for l in range(len(consumo)):
     consumo[l] = consumo[l].split(",")    
     
     
+'''
+Dicionário dos alimentos consumidos pela pessoa
+'''
 
 dic_consumo={}
 consumo.remove(consumo[0])
@@ -78,6 +86,10 @@ for l in range(len(alimentos)):
 alimentos.remove(alimentos[0])
 #print(alimentos)
 
+'''
+Dicionário de todos os alimentos
+'''
+
 dic_alimentos={}
 for l in alimentos:
 
@@ -92,9 +104,13 @@ for l in alimentos:
     
 #print(dic_alimentos)
 
-
-
 consumo_total = {}
+
+'''
+Calcula a quantidade de calorias por grama de um alimento, multiplica pela 
+quantidade consumida pelo indivíduo e soma todas as calorias consumidas
+no dia
+'''
 
 cal_por_grama=[]
 for k in dic_consumo:
@@ -106,49 +122,6 @@ for k in dic_consumo:
     consumo_total[k] = tdia
 
 #print(consumo_total)
-      
-
-    
-        
-        
-        
-        
-
-    
-#print(dic_consumo)
-   
-
-abrir = open("alimentos.csv")
-alimentos = abrir.readlines()
-
-for i in range(len(alimentos)):
-    alimentos[i] = alimentos[i].strip()
-
-for l in range(len(alimentos)):
-    alimentos[l] = alimentos[l].split(",")
-alimentos.remove(alimentos[0])
-#print(alimentos)
-
-
-
-
-
-
-
-#calorias
-
-consumo_total = {}
-
-
-for k in dic_consumo:
-    tdia = 0
-    for lista_dia in dic_consumo[k]:
-        c=float(dic_alimentos[lista_dia[0]][1])
-        g=float(dic_alimentos[lista_dia[0]][0])        
-        tdia += float(lista_dia[1])*(c/g)
-    consumo_total[k] = tdia
-    
-#print(consumo_total)
 
 datas=[]
 for i in consumo_total:
@@ -157,6 +130,10 @@ for i in consumo_total:
 #print(datas)
 
 import datetime
+
+'''
+Coloca os argumentos em inteiros
+'''
 
 consumo_crono={}
 d1=datetime.datetime(int(datas[0][2]), int(datas[0][1]), int(datas[0][0]))
@@ -168,9 +145,6 @@ d6=datetime.datetime(int(datas[5][2]), int(datas[5][1]), int(datas[5][0]))
 d7=datetime.datetime(int(datas[6][2]), int(datas[6][1]), int(datas[6][0]))
 
 
-
-
-    
 #print(d1)
 #print(d2)
 #print(d3)
@@ -178,7 +152,6 @@ d7=datetime.datetime(int(datas[6][2]), int(datas[6][1]), int(datas[6][0]))
 #print(d5)
 #print(d6)
 #print(d7)
-
 
 
 l_data=[d1,d2,d3,d4,d5,d6,d7]
@@ -199,6 +172,10 @@ for i in sorted(cons2):
     cal_dia.append(cons2[i])
 #print(cal_dia)
 
+'''
+Colocando as datas em ordem cronológica
+'''
+
 ordem_crono=sorted(l_data)
 
 for d in ordem_crono:
@@ -208,6 +185,10 @@ for d in ordem_crono:
 #proteinas
 
 consumo_prot = {}
+
+'''
+Calcula a quantidade de proteínas consumidas em um dia
+'''
 
 for k in dic_consumo:
     tdiaprot = 0
@@ -236,6 +217,10 @@ for i in sorted(consprot):
 
 consumo_carb = {}
 
+'''
+Calcula a quantidade de carboidratos consumidos em um dia
+'''
+
 for k in dic_consumo:
     tdiacarb = 0
     for lista_dia in dic_consumo[k]:
@@ -262,6 +247,10 @@ for i in sorted(conscarb):
 #gorduras
 
 consumo_gord = {}
+
+'''
+Calcula a quantidade de gorduras consumidas em um dia
+'''
 
 for k in dic_consumo:
     tdiagord = 0
@@ -301,6 +290,9 @@ cal_id=[x]*7
 #plt.axis(0,num_dias[6],0,500)
 #plt.show()
 
+'''
+Plotando os gráficos de proteínas, carboidratos, gorduras, calorias e calorias ideais
+'''
 
 plt.plot(num_dias,prot_dia,"purple",label="proteinas")
 plt.legend(loc="upper right")
@@ -315,23 +307,3 @@ plt.legend(loc="upper right")
 plt.plot(num_dias,cal_dia,"p")
 plt.axis(0,num_dias[6],0,cal_dia)
 plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
