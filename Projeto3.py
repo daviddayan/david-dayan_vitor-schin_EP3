@@ -108,33 +108,6 @@ for k in dic_consumo:
 #print(consumo_total)
       
 
-    
-        
-        
-        
-        
-
-    
-#print(dic_consumo)
-   
-
-abrir = open("alimentos.csv")
-alimentos = abrir.readlines()
-
-for i in range(len(alimentos)):
-    alimentos[i] = alimentos[i].strip()
-
-for l in range(len(alimentos)):
-    alimentos[l] = alimentos[l].split(",")
-alimentos.remove(alimentos[0])
-#print(alimentos)
-
-
-
-
-
-
-
 #calorias
 
 consumo_total = {}
