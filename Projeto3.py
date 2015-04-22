@@ -123,6 +123,21 @@ for k in dic_consumo:
 
 #print(consumo_total)
 
+#calorias
+
+consumo_total = {}
+
+
+for k in dic_consumo:
+    tdia = 0
+    for lista_dia in dic_consumo[k]:
+        c=float(dic_alimentos[lista_dia[0]][1])
+        g=float(dic_alimentos[lista_dia[0]][0])        
+        tdia += float(lista_dia[1])*(c/g)
+    consumo_total[k] = tdia
+    
+#print(consumo_total)
+
 datas=[]
 for i in consumo_total:
     d=i.split("/")
@@ -281,18 +296,10 @@ import matplotlib.pyplot as plt
 
 cal_id=[x]*7
 
-#plt.plot(num_dias,prot_dia,"purple",label="proteinas")
-#plt.legend(loc="upper right")
-#plt.plot(num_dias,carb_dia,"y",label="carboidratos")
-#plt.legend(loc="upper right")
-#plt.plot(num_dias,gord_dia,"r",label="gorduras")
-#plt.legend(loc="upper right")
-#plt.axis(0,num_dias[6],0,500)
-#plt.show()
-
 '''
 Plotando os gráficos de proteínas, carboidratos, gorduras, calorias e calorias ideais
 '''
+
 
 plt.plot(num_dias,prot_dia,"purple",label="proteinas")
 plt.legend(loc="upper right")
@@ -300,10 +307,41 @@ plt.plot(num_dias,carb_dia,"y",label="carboidratos")
 plt.legend(loc="upper right")
 plt.plot(num_dias,gord_dia,"r",label="gorduras")
 plt.legend(loc="upper right")
+plt.axis([0,num_dias[-1],0,500])
+plt.show()
+
+#
+#plt.plot(num_dias,prot_dia,"purple",label="proteinas")
+#plt.legend(loc="upper right")
+#plt.plot(num_dias,carb_dia,"y",label="carboidratos")
+#plt.legend(loc="upper right")
+#plt.plot(num_dias,gord_dia,"r",label="gorduras")
+#plt.legend(loc="upper right")
 plt.plot(num_dias,cal_id,"g",label="calorias")
 plt.legend(loc="upper right")
 plt.plot(num_dias,cal_dia,"b",label="calorias ideias")
 plt.legend(loc="upper right")
 plt.plot(num_dias,cal_dia,"p")
-plt.axis(0,num_dias[6],0,cal_dia)
 plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> origin/master
